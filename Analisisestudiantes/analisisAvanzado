@@ -1,0 +1,24 @@
+import pandas as pd
+import plotly.express as px
+import os
+import dash 
+from dash import html,Input,Output,dcc
+from dash import dash_table 
+
+# 
+
+
+#cargar los datos
+ruta = os.path.join(os.path.dirname(__file__),"notas_limpio.xlsx")
+dataf = pd.read_excel(ruta)
+
+#iniciar app
+appNotas = dash.Dash(__name__)
+
+
+appNotas.layout = html.Div([
+    html.h1("Tablero avanzado",sstyle={"textAlign"})
+])
+#ejecutar la app
+if __name__ == '__main__':
+    appNotas.run(debug=True)

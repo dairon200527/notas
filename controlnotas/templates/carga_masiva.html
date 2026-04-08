@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carga Masiva</title>
+</head>
+
+<body>
+
+    <h1>Carga Masiva</h1>
+
+    <form action="/carga_masiva" method="POST" enctype="multipart/form-data">
+        <div class="caja_input">
+            <label for="archivo">Seleccionar Archivo</label>
+            <input type="file" name="archivo" id="archivo" required>
+        </div>
+
+        <a href="/dashprincipal/?reset=1">
+    Ver estudiantes en el dashboard
+    </a>
+
+        <button type="submit">Cargar</button>
+    </form>
+
+
+    <!-- RESUMEN DEL PROCESO -->
+    {% if resumen %}
+    <h2>Resultado del cargue</h2>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Resultado</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for fila in resumen %}
+            <tr>
+                <td>{{ fila.categoria }}</td>
+                <td>{{ fila.cantidad }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- BOTÓN PARA IR AL DASHBOARD -->
+    <a class="btn_dashboard" href="/dashprincipal/?reset=1">
+        Ver estudiantes en el Dashboard
+    </a>
+
+    {% endif %}
+
+
+    <!-- DESCARGA DE REGISTROS RECHAZADOS -->
+    {% if hay_rechazados %}
+        <a class="descarga" href="/descargar_rechazados">
+            ⬇️ Descargar registros rechazados
+        </a>
+    {% endif %}
+
+</body>
+
+
+<style>
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 20px;
+    font-family: Arial;
+}
+
+form{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-radius: 20px;
+    border: solid 1px black;
+    box-shadow: black 0px 2px 5px;
+}
+
+.caja_input{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+table{
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th,td{
+    padding: 10px 20px;
+    text-align: center;
+}
+
+th{
+    background-color: #3498db;
+    color: white;
+}
+
+.btn_dashboard{
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #2ecc71;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.descarga{
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: orange;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+</style>
+
+</html>
